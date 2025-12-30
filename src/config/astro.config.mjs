@@ -1,9 +1,13 @@
 import { defineConfig } from 'astro/config'
 import mdx from '@astrojs/mdx'
+import node from '@astrojs/node'
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'static',
+  output: 'server',
+  adapter: node({
+    mode: 'standalone' // Add the adapter configuration
+  }),
   build: {
     // Example: Generate `page.html` instead of `page/index.html` during build.
     format: 'file'
