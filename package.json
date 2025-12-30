@@ -7,9 +7,9 @@
   "author": "Colorlib <https://colorlib.com>",
   "main": "dist/js/adminlte.min.js",
   "scripts": {
-    "start": "npm run dev",
+    "start": "node ./dist/server/entry.mjs",
     "dev": "npm-run-all --parallel watch docs-serve",
-    "build": "npm-run-all clean compile",
+    "build": "npm run compile",
     "css": "npm-run-all css-compile css-prefix css-rtl css-minify",
     "css-compile": "sass --style expanded --load-path=\"node_modules\" --source-map --embed-sources --no-error-css --quiet src/scss/:dist/css/",
     "css-rtl": "cross-env NODE_ENV=RTL postcss --config src/config/postcss.config.mjs --dir \"dist/css\" --ext \".rtl.css\" \"dist/css/*.css\" \"!dist/css/*.min.css\" \"!dist/css/*.rtl.css\"",
@@ -33,7 +33,7 @@
     "assets": "node src/config/assets.config.mjs",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel js-lint css-lint docs-lint lockfile-lint",
     "clean": "rimraf dist",
-    "compile": "npm-run-all css js assets copy-assets docs-compile flatten-build",
+    "compile": "npm-run-all css js assets copy-assets docs-compile docs-format flatten-build",
     "production": "npm-run-all clean lint compile bundlewatch",
     "watch": "concurrently \"npm:watch-*\"",
     "watch-css-main": "nodemon --watch src/scss/ --ext scss --exec \"npm-run-all css-lint css-compile css-prefix copy-assets\"",
@@ -67,6 +67,7 @@
     "url": "https://github.com/ColorlibHQ/AdminLTE/issues"
   },
   "devDependencies": {
+    "@astrojs/node": "latest",
     "@astrojs/check": "^0.9.6",
     "@astrojs/mdx": "^4.3.12",
     "@types/pg": "^8.10.0",
