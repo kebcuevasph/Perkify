@@ -42,8 +42,8 @@
     "watch-assets": "nodemon --watch src/assets/ --exec \"npm run assets\""
   },
   "dependencies": {
-  "pg": "^8.11.0",
-  "@astrojs/node": "^9.0.0"
+    "pg": "^8.11.0",
+    "@astrojs/node": "^9.0.0"
   },
   "keywords": [
     "css",
